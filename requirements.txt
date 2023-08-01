@@ -1,0 +1,16 @@
+numpy
+pandas
+prefect
+boto3
+evidently
+joblib
+pyarrow
+psycopg
+scikit-learn
+tqdm
+requests
+jupyter
+mlflow 
+black
+prefect
+orjson
