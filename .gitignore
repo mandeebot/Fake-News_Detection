@@ -1,0 +1,22 @@
+data/
+.ipynb_checkpoints
+
+#mlflow
+*models/*
+*mlruns/*
+*mandeebot.db*
+*mandeebot*
+
+#editors
+.vscode/
+./DS_Store
+*-deployment.yaml
+
+#database
+*.db
+*.DS_Store
+
+# data files
+*.csv
+
+#

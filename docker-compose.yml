@@ -1,0 +1,47 @@
+version: "3.7"
+
+volumes: 
+  grafana_data: {}
+  postgres_data: {}
+
+networks:
+  front-tier:
+  back-tier:
+
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres_db
+    environment:
+       POSTGRES_USER: mandeebot #changed to mandeebot from postgres 
+       POSTGRES_PASSWORD: pass #changed from 12345 to pass
+       POSTGRES_DB: mlflow_db
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - back-tier
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - back-tier
+      - front-tier
+
+  grafana:
+    image: grafana/grafana
+    user: "472"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config/grafana_datasources.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+    networks:
+     - back-tier
+     - front-tier
+    restart: always
+  
